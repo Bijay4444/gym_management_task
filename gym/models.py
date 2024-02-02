@@ -1,5 +1,4 @@
-# gym/models.py
-
+# Description: This file contains the models for the gym app.
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -11,6 +10,7 @@ class UserProfile(models.Model):
     ]
     
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
     age = models.IntegerField()
     weight = models.FloatField()
     height = models.FloatField()
@@ -19,15 +19,3 @@ class UserProfile(models.Model):
     fitness_goal = models.CharField(max_length=255, choices=FITNESS_PREFERENCES)
 
 
-class Exercise(models.Model):
-    name = models.CharField(max_length=255)
-    # ... other fields
-
-class Workout(models.Model):
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-    exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
-    duration = models.DurationField()
-    sets = models.IntegerField()
-    reps = models.IntegerField()
-    intensity = models.CharField(max_length=255)
-    # ... other fields
