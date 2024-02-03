@@ -19,3 +19,11 @@ class UserProfile(models.Model):
     fitness_goal = models.CharField(max_length=255, choices=FITNESS_PREFERENCES)
 
 
+class WorkoutLog(models.Model):
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    exercise_type = models.CharField(max_length=255)
+    duration = models.DurationField()
+    sets = models.PositiveIntegerField()
+    reps = models.PositiveIntegerField()
+    intensity = models.CharField(max_length=255)
+    log_date = models.DateTimeField(auto_now_add=True)

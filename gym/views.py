@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import UserProfileForm
+from .forms import UserProfileForm, WorkoutLogForm
 
 # Create your views here.
 # @login_required
@@ -18,3 +18,16 @@ def create_profile(request):
         form = UserProfileForm()
         
     return render(request, 'core/create_profile.html', {'form': form})
+
+def log_workout(request):
+    if request.method == 'POST':
+        form = WorkoutLogForm(request.POST)
+        if form.is_valid():
+            workout_log = form.save(commit=False)
+            workout_log.user_profile = request.user.userprofile  # Assuming user has a profile
+            workout_log.save()
+            return redirect('profile')  # Redirect to the user's profile page
+    else:
+        form = WorkoutLogForm()
+
+    return render(request, 'core/log_workout.html', {'form': form})

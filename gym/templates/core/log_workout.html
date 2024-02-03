@@ -1,0 +1,10 @@
+{% extends 'partials/base.html' %}
+
+{% block content %}
+    <h2>Log Your Workout</h2>
+    <form method="post" action="{% url 'log_workout' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Log Workout</button>
+    </form>
+{% endblock %}
