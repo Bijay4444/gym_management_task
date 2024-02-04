@@ -1,0 +1,10 @@
+{% extends 'partials/base.html' %}
+
+{% block content %}
+    <h2>Track Your Progress</h2>
+    <form method="post" action="{% url 'track_progress' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Track Progress</button>
+    </form>
+{% endblock %}
