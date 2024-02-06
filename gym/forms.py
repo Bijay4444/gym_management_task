@@ -1,5 +1,5 @@
 from django import forms
-from .models import UserProfile, WorkoutLog, ProgressTracking
+from .models import UserProfile, WorkoutLog, ProgressTracking, FitnessGoal
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
@@ -15,3 +15,8 @@ class ProgressTrackingForm(forms.ModelForm):
     class Meta:
         model = ProgressTracking
         fields = ['weight', 'body_measurements', 'fitness_level']
+        
+class FitnessGoalForm(forms.ModelForm):
+    class Meta:
+        model = FitnessGoal
+        fields = ['description', 'target_date']

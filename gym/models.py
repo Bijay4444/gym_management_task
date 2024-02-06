@@ -34,3 +34,10 @@ class ProgressTracking(models.Model):
     body_measurements = models.TextField()  
     fitness_level = models.CharField(max_length=255)
     tracking_date = models.DateTimeField(auto_now_add=True)
+
+
+class FitnessGoal(models.Model):
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    description = models.TextField()
+    target_date = models.DateField()
+    created_at = models.DateTimeField(auto_now_add=True)

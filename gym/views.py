@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import UserProfileForm, WorkoutLogForm, ProgressTrackingForm
+from .forms import UserProfileForm, WorkoutLogForm, ProgressTrackingForm, FitnessGoalForm
 
 # Create your views here.
 # @login_required
@@ -44,3 +44,16 @@ def track_progress(request):
         form = ProgressTrackingForm()
 
     return render(request, 'core/track_progress.html', {'form': form})
+
+def set_fitness_goal(request):
+    if request.method == 'POST':
+        form = FitnessGoalForm(request.POST)
+        if form.is_valid():
+            fitness_goal = form.save(commit=False)
+            fitness_goal.user_profile = request.user.userprofile  # Assuming user has a profile
+            fitness_goal.save()
+            return redirect('profile')  # Redirect to the user's profile page
+    else:
+        form = FitnessGoalForm()
+
+    return render(request, 'core/set_fitness_goal.html', {'form': form})

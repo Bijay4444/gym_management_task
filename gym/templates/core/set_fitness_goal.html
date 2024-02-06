@@ -1,0 +1,10 @@
+{% extends 'partials/base.html' %}
+
+{% block content %}
+    <h2>Set Your Fitness Goal</h2>
+    <form method="post" action="{% url 'set_fitness_goal' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Set Fitness Goal</button>
+    </form>
+{% endblock %}
