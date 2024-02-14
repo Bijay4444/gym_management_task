@@ -1,0 +1,10 @@
+{% extends 'partials/base.html' %}
+
+{% block content %}
+    <h2>Log Your Nutrition</h2>
+    <form method="post" action="{% url 'log_nutrition' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Log Nutrition</button>
+    </form>
+{% endblock %}

@@ -41,3 +41,10 @@ class FitnessGoal(models.Model):
     description = models.TextField()
     target_date = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
+
+
+class NutritionLog(models.Model):
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    meal_description = models.TextField()
+    calories = models.FloatField()
+    log_date = models.DateField(auto_now_add=True)
